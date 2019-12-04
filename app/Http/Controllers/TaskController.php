@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
+use App\Http\Requests;
 class TaskController extends Controller
 {
-
     /**
      * 建立一個新的控制器實例。
      *
