@@ -7,16 +7,26 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\TaskRepository;
 use App\Task;
+use Auth;
 class TaskController extends Controller
 {
     /**
-     * 建立一個新的控制器實例。
+     * 任務資源庫的實例。
      *
+     * @var TaskRepository
+     */
+    protected $tasks;
+
+    /**
+     * 建立新的控制器實例。
+     *
+     * @param  TaskRepository  $tasks
      * @return void
      */
-    public function __construct()
+    public function __construct(TaskRepository $tasks)
     {
         $this->middleware('auth');
+        $this->tasks = $tasks;
     }
 
     /**
@@ -27,7 +37,14 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        return view('tasks.index');
+    $tasks = Task::where('user_id', $request->user()->id)->get();
+        //$tasks= auth()->user()->tasks;
+        // $tasks= auth()->user()->tasks()->get();
+        // $tasks=Auth::user()->tasks;
+        // $tasks=Auth::user()->tasks()->get();
+       return view('tasks.index', [
+            'tasks' => $tasks,
+        ]);
     }
 
 
