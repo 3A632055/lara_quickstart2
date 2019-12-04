@@ -13,11 +13,12 @@ class Task extends Model
      */
     protected $fillable = ['name'];
 
+
     /**
-     * 取得該使用者的所有任務。
+     * 取得擁有此任務的使用者。
      */
-    public function tasks()
+    public function user()
     {
-        return $this->hasMany(Task::class);
+        return $this->belongsTo(User::class);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\TaskRepository;
 use App\Task;
 class TaskController extends Controller
 {
@@ -52,6 +53,7 @@ class TaskController extends Controller
      * @param  Request  $request
      * @return Response
      */
+    /*
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -60,7 +62,19 @@ class TaskController extends Controller
 
         // Create The Task...
     }
+    */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+        ]);
 
+        $request->user()->tasks()->create([
+            'name' => $request->name,
+        ]);
+
+        return redirect('/tasks');
+    }
     /**
      * Display the specified resource.
      *

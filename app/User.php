@@ -36,12 +36,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
     /**
-     * 取得擁有此任務的使用者。
-     */
-    public function user()
+ * 取得該使用者的所有任務。
+ */
+    public function tasks()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Task::class);
     }
 }
