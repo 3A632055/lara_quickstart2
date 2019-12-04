@@ -4,7 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-
+use App\Policies\TaskPolicy;
+use App\Task;
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -12,8 +13,14 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array
      */
+    /**
+     * 應用程式的原則對應。
+     *
+     * @var array
+     */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+         'App\Model' => 'App\Policies\ModelPolicy',
+        Task::class => TaskPolicy::class,
     ];
 
     /**
