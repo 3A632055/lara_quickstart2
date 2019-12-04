@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Task;
+use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
+use App\Task;
 class TaskController extends Controller
 {
     /**
@@ -19,14 +19,16 @@ class TaskController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * 顯示使用者所有任務的清單。
      *
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return view('tasks.index');
     }
+
 
     /**
      * Show the form for creating a new resource.
