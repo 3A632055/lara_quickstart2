@@ -46,9 +46,19 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    /**
+     * 建立新的任務。
+     *
+     * @param  Request  $request
+     * @return Response
+     */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+        ]);
+
+        // Create The Task...
     }
 
     /**
