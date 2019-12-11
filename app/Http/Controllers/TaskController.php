@@ -37,11 +37,18 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-    $tasks = Task::where('user_id', $request->user()->id)->get();
-        //$tasks= auth()->user()->tasks;
+   // $tasks = Task::where('user_id', $request->user()->id)->get();
+        $tasks= auth()->user()->tasks;
         // $tasks= auth()->user()->tasks()->get();
         // $tasks=Auth::user()->tasks;
         // $tasks=Auth::user()->tasks()->get();
+
+    auth()-> user()->id;
+    auth()-> user()->name;
+    auth()-> user()->email;
+    auth()-> user()->tasks;  //:登入後的使用者的所有任務
+    auth()-> user()-> tasks();  //:登入後的使用者與任務的 1 對多關係
+
        return view('tasks.index', [
             'tasks' => $tasks,
         ]);
